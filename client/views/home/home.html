@@ -1,0 +1,92 @@
+<template name="home">
+    {{> upload}}
+    {{> uploadsList}}
+</template>
+
+<template name="upload">
+    <div class="col-md-12">
+        <form role="form">
+            <div class="form-group">
+                <label for="files">Upload Files</label>
+                <div>
+                    <input type="file" id="files" multiple>
+                </div>
+            </div>
+        </form>
+        <div id="dropzone" class="dropzone">
+            <div class="dropzoneText">Drop file to upload</div>
+        </div>
+        <hr>
+    </div>
+</template>
+
+<template name="uploadsList">
+    <div class="col-md-12 uploadsList">
+    {{#each uploads}}
+        <h3>{{this.name}}</h3>
+        <p>{{dateFromUTC this.metadata.date}}</p>
+        <div class="media">
+            {{>media}}
+        </div>
+        <hr>
+    {{/each}}
+    </div>
+</template>
+
+<template name="media">
+    {{#if this.isUploaded}}
+
+        {{#if isImage}}
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <img src="{{this.url}}" class="full-width">
+                </div>
+            </div>
+        {{else}}
+
+        {{#if isAudio}}
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <audio controls>
+                        <source src="{{this.url}}" type="{{this.type}}"  class="full-width">
+                        Your browser does not support the audio element.
+                    </audio>                    
+                </div>
+            </div>
+        {{else}}
+
+        {{#if isVideo}}
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <video controls>
+                        <source src="{{this.url}}" type="{{this.type}}"  class="full-width">
+                        Your browser does not support the video tag.
+                    </video>                  
+                </div>
+            </div>
+        {{else}}
+
+        {{#if isMarkdown}}
+            {{asyncFetch this.url}}
+            {{#markdown}}
+                {{sessionVar this.url}}
+            {{/markdown}}
+        {{else}}
+
+        {{#if isText}}
+            <div class="row">
+                <div class="col-md-12">
+                    <pre>{{asyncFetch this.url}}{{sessionVar this.url}}</pre>         
+                </div>
+            </div>
+        {{else}}
+            <p>Unrecognized file type{{#if this.type}} ({{this.type}}){{/if}}. Open at your own risk:</p><p><a href="{{this.url}}">{{this.name}}</a></p>
+        {{/if}}
+        {{/if}}
+        {{/if}}
+        {{/if}}
+        {{/if}}
+    {{else}}
+        {{> FS.UploadProgressBar bootstrap=true}}
+    {{/if}}
+</template>

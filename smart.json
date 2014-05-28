@@ -1,0 +1,11 @@
+{
+  "packages": {
+    "iron-router": {},
+    "less-bootstrap-3": {},
+    "less-fontawesome-4": {},
+    "accounts-ui-bootstrap-3": {},
+    "collectionFS": {},
+    "cfs-ui": {},
+    "ui-dropped-event": {}
+  }
+}

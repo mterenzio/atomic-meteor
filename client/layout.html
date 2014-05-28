@@ -1,0 +1,22 @@
+<head>
+    <title>Simple Meteor CMS</title>
+    <!-- Set viewport for Bootstrap to work on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<template name="layout">
+    <div class="container">
+        {{> navbar}}
+        <div class="row" id="main">
+            {{> yield}}
+        </div>
+    </div>
+</template>
+
+<template name="notFound">
+    Not Found
+</template>
+
+<template name="loading">
+    Loading...
+</template>
