@@ -17,3 +17,6 @@ cfs-filesystem
 cfs-ui
 http
 ui-dropped-event
+simple-schema
+showdown
+cfs-gridfs
