@@ -7,14 +7,12 @@ Meteor.startup(function() {
 		    	return CollectionData.insert({"collectionName": collectionName, "schemaID": schemaID});
 		    },
 		    insertCollectionData: function (collectionName, obj) {
-		    	var newCollcetion;
 
-		    	if (newCollcetion === undefined){
-						newCollcetion = new Meteor.Collection(collectionName);		    		
-						newCollcetion.insert(obj);
-						delete newCollcetion;
-		    	}
-		    	
+		    	if (MyCollections[collectionName] === undefined)
+		    		MyCollections[collectionName] = new Meteor.Collection(collectionName);
+
+		    	MyCollections[collectionName].insert(obj);
+
 		    }		    
 		  });
 });

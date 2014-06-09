@@ -5,3 +5,10 @@ Uploads = new FS.Collection("uploads", {
 });
 
 CollectionData = new Meteor.Collection("collections");
+
+var collectionData = CollectionData.find();
+
+MyCollections = {};
+collectionData.forEach( function (item) {
+	MyCollections[item.collectionName] = new Meteor.Collection(item.collectionName);
+});
