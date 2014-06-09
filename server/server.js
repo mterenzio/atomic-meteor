@@ -10,17 +10,11 @@ Meteor.startup(function() {
 		    	var newCollcetion;
 
 		    	if (newCollcetion === undefined){
-		    		try {
-		    			newCollcetion = new Meteor.Collection(collectionName);	
-		    			newCollcetion.insert(obj);
-		    		}
-		    		catch(err){
-		    			console.log(newCollcetion);
-		    			newCollcetion.insert(obj);
-		    		}
+						newCollcetion = new Meteor.Collection(collectionName);		    		
+						newCollcetion.insert(obj);
 						delete newCollcetion;
 		    	}
-		    		
+		    	
 		    }		    
 		  });
 });
