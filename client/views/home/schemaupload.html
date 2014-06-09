@@ -31,7 +31,15 @@
 		<div class="panel">
 			{{#each collections}}
 				<div class="row">
-					<a href="/user/{{_id}}">{{collectionName}}</a>
+					<div class="col-md-2">
+						<p>{{collectionName}}</p>
+					</div>
+					<div class="col-md-2">
+						<a href="/user/{{_id}}">Add Data</a>
+					</div>
+					<div class="col-md-3">
+						<a href="#" class="removeCollection {{_id}}">Remove Collection</a>
+					</div>
 				</div>
 			{{/each}}
 		</div>

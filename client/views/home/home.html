@@ -1,6 +1,6 @@
 <template name="collections">
     <div class="containter">
-        <div class="row collectionArea">
+        <div class="row well collectionArea">
           <div class="col-md-4">
             <input type="text" class="form-control" id="collectionName" placeholder="Collection Name">
           </div>
@@ -17,16 +17,23 @@
           <div class="schemaAre">
             {{> upload}}
           </div>
-          {{> uploadsList}}          
+          {{> uploadsList}}
         </div>
     </div>
 </template>
 <template name="home">
-    {{> collections}}
+    
 </template>
 
+<template name="schemaupload">
+  <div class="page-header">
+    <h1>Creating Collection && Uploading Schema</h1>
+  </div>
+
+  {{> collections}}
+</template>
 <template name="upload">
-    <div class="panel col-md-12">
+    <div class="well col-md-12">
         <form role="form">
             <div class="form-group">
                 <label for="files">Upload Schema file</label>
@@ -43,6 +50,7 @@
 </template>
 
 <template name="uploadsList">
+  <h3>Schemas</h3>
     <div class="col-md-12 uploadsList">
     {{#each uploads}}
         <div class="row">
