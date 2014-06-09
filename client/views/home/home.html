@@ -1,20 +1,42 @@
+<template name="collections">
+    <div class="containter">
+        <div class="row collectionArea">
+          <div class="col-md-4">
+            <input type="text" class="form-control" id="collectionName" placeholder="Collection Name">
+          </div>
+          <div class="col-md-4">
+            <div class="input-group">
+              <button type="button" id="create" class="btn btn-success">Create Collection</button>
+            </div>            
+          </div>
+          <div class="col-md-4">
+              <button type="button" class="btn btn-primary hideAction">Hide Upload Area</button>            
+          </div>
+        </div>
+        <div class="row">
+          <div class="schemaAre">
+            {{> upload}}
+          </div>
+          {{> uploadsList}}          
+        </div>
+    </div>
+</template>
 <template name="home">
-    {{> upload}}
-    {{> uploadsList}}
+    {{> collections}}
 </template>
 
 <template name="upload">
-    <div class="col-md-12">
+    <div class="panel col-md-12">
         <form role="form">
             <div class="form-group">
-                <label for="files">Upload Files</label>
+                <label for="files">Upload Schema file</label>
                 <div>
                     <input type="file" id="files" multiple>
                 </div>
             </div>
         </form>
         <div id="dropzone" class="dropzone">
-            <div class="dropzoneText">Drop file to upload</div>
+            <div class="dropzoneText">Drop Schema file to upload</div>
         </div>
         <hr>
     </div>
@@ -23,9 +45,11 @@
 <template name="uploadsList">
     <div class="col-md-12 uploadsList">
     {{#each uploads}}
-        <h3>{{this.name}}</h3>
-        <p>{{dateFromUTC this.metadata.date}}</p>
-        <div class="media">
+        <div class="row">
+          <div class="col-md-8"><p>{{this.name}}</p></div>
+          <div class="col-md-4"><p>{{dateFromUTC this.metadata.date}}</p></div>
+        </div>
+        <div class="row media {{_id}}">
             {{>media}}
         </div>
         <hr>
@@ -35,44 +59,6 @@
 
 <template name="media">
     {{#if this.isUploaded}}
-
-        {{#if isImage}}
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <img src="{{this.url}}" class="full-width">
-                </div>
-            </div>
-        {{else}}
-
-        {{#if isAudio}}
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <audio controls>
-                        <source src="{{this.url}}" type="{{this.type}}"  class="full-width">
-                        Your browser does not support the audio element.
-                    </audio>                    
-                </div>
-            </div>
-        {{else}}
-
-        {{#if isVideo}}
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <video controls>
-                        <source src="{{this.url}}" type="{{this.type}}"  class="full-width">
-                        Your browser does not support the video tag.
-                    </video>                  
-                </div>
-            </div>
-        {{else}}
-
-        {{#if isMarkdown}}
-            {{asyncFetch this.url}}
-            {{#markdown}}
-                {{sessionVar this.url}}
-            {{/markdown}}
-        {{else}}
-
         {{#if isText}}
             <div class="row">
                 <div class="col-md-12">
@@ -81,10 +67,6 @@
             </div>
         {{else}}
             <p>Unrecognized file type{{#if this.type}} ({{this.type}}){{/if}}. Open at your own risk:</p><p><a href="{{this.url}}">{{this.name}}</a></p>
-        {{/if}}
-        {{/if}}
-        {{/if}}
-        {{/if}}
         {{/if}}
     {{else}}
         {{> FS.UploadProgressBar bootstrap=true}}

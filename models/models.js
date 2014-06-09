@@ -1,7 +1,7 @@
-// var base = process.env.PWD
+var uploadStore = new FS.Store.GridFS("uploads");
 
 Uploads = new FS.Collection("uploads", {
-    stores: [new FS.Store.FileSystem("uploads", {
-        path: "~/code/mrt/simple-cms/uploads"
-    })]
+    stores: [uploadStore]
 });
+
+CollectionData = new Meteor.Collection("collections");

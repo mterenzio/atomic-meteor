@@ -6,6 +6,7 @@
     "accounts-ui-bootstrap-3": {},
     "collectionFS": {},
     "cfs-ui": {},
-    "ui-dropped-event": {}
+    "ui-dropped-event": {},
+    "bootboxjs": {}
   }
 }

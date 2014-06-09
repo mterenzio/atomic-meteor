@@ -1,0 +1,39 @@
+<template name="schemas">
+    <div class="container">
+    	<form id="schemaForm" name="schemaForm">
+    	{{#each collections}}
+    		{{#if type "String"}}
+    			<div class="row" style="margin-top: 20px">
+    				<div class="col-md-8">
+							<div class="form-group">
+							  <label class="col-md-4 control-label" for="{{key}}">{{label}}</label>  
+							  <div class="col-md-6">
+							  <input id="{{key}}" name="{{key}}" placeholder="{{getValue key}}" class="form-control input-md" type="text" required="">
+							  </div>
+							</div>    				
+						</div>
+    			</div>
+    		{{/if}}
+    	{{/each}}
+			<div class="row" style="margin-top: 20px;">
+			  <label class="col-md-4 control-label" for="submit"></label>
+			  <div class="col-md-4">
+			    <button type="submit" class="btn btn-primary">Submit</button>
+			  </div>
+			</div>
+    </form>
+    </div>
+</template>
+
+<template name="schemaList">
+	<div class="container">
+		<h3>Schemas</h3>
+		<div class="panel">
+			{{#each collections}}
+				<div class="row">
+					<a href="/user/{{_id}}">{{collectionName}}</a>
+				</div>
+			{{/each}}
+		</div>
+	</div>
+</template>

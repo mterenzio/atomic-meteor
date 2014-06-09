@@ -2,14 +2,6 @@ UI.registerHelper('fileFromId', function(id) {
     return Uploads.findOne(id)
 });
 
-UI.registerHelper('isMarkdown', function() {
-    if (this.extension() === 'md' || this.extension() === 'markdown') {
-        return true
-    } else {
-        return false
-    }
-})
-
 UI.registerHelper('isText', function() {
     if (this.type() === 'text/plain') {
         return true
