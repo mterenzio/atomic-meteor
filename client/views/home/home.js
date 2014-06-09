@@ -56,6 +56,9 @@ Template.collections.events({
           // console.log(Uploads.findOne(Session.get("data-id")).url());
           // console.log(Collections);
           Meteor.call("insertCollection", collectionName, schemaID, function (error, result) {
+            if (!error){
+              Router.go("/user");
+            }
           });          
           // Meteor.call("createCollection", collectionName, Session.get("data-id"), function (error, result) {
           // });
